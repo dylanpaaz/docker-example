@@ -22,8 +22,8 @@ jobs:
         run: echo "tag=$(date + '%Y%m%d.%H%M%S')" >> $GITHUB_OUTPUT
         id: timestamp
       - name: Generate Docker image
-        run: mvn spring-boot:build-image -DskipTests -Dspring-boot.build-image.imageName=${{ secrets.DOCKERHUB_USERNAME }}/anuncios:${{ secrets.DOCKERHUB_USERNAME/secrets.DOCKERHUB_USERNAME:steps.project.outputs.tag-steps.timestap.outputs.tag }}
+        run: mvn spring-boot:build-image -DskipTests -Dspring-boot.build-image.imageName=${{ secrets.DOCKERHUB_USERNAME }}/anuncios:${{ steps.project.outputs.tag-steps.timestap.outputs.tag }}
       - name: Login to DockerHub
         run: docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" -p "${{ secrets.DOCKERHUB_TOKEN }}" 
       - name: Push image to DockerHub
-        run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/anuncios:${{ <user_name>/<image_name>:steps.project.outputs.tag-steps.timestap.outputs.tag }}
+        run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/anuncios:${{ steps.project.outputs.tag-steps.timestap.outputs.tag }}
