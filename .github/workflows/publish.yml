@@ -15,10 +15,7 @@ jobs:
           java-version: '17'
       - name: Run tests
         run: mvn test
-      - name: Generate tag
-        run: echo "tag=$(mvn -q help:evaluate -Dexpression=project.version -DforceStdout)" >> $GITHUB_OUTPUT
-        id: project
-      - name: Generate tag 2
+      - name: Generate tag 
         run: echo "tag=$(date + '%Y%m%d.%H%M%S')" >> $GITHUB_OUTPUT
         id: timestamp
       - name: Generate Docker image
